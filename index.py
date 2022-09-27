@@ -1,6 +1,6 @@
 from tkinter import *
-
-
+from tkinter import messagebox
+import pygame
 def start_main_page():
     def start_game(args):
         main_window.destroy()
@@ -29,16 +29,15 @@ def start_main_page():
     def option():
 
         lab_img1 = Button(
-            main_window,
             text="CHỌN CHỦ ĐỀ",
-            bg='#dfa801',
+            bg='#7f9dc0',
             border=0,
-            justify='center',
-            font=("Arial", 12)
+            justify='left',
+            font=("Arial", 18)
 
         )
         sel_btn1 = Button(
-            text="Animals",
+            text="ĐỘNG VẬT",
             width=18,
             borderwidth=8,
             font=("", 18),
@@ -49,7 +48,7 @@ def start_main_page():
         )
 
         sel_btn2 = Button(
-            text="Body parts",
+            text="CƠ THỂ",
             width=18,
             borderwidth=8,
             font=("", 18),
@@ -60,7 +59,7 @@ def start_main_page():
         )
 
         sel_btn3 = Button(
-            text="Colour",
+            text="MÀU SẮC",
             width=18,
             borderwidth=8,
             font=("", 18),
@@ -71,7 +70,7 @@ def start_main_page():
         )
 
         sel_btn4 = Button(
-            text="Fruits",
+            text="HOA QUẢ",
             width=18,
             borderwidth=8,
             font=("", 18),
@@ -82,7 +81,7 @@ def start_main_page():
         )
 
         sel_btn5 = Button(
-            text="Shapes",
+            text="HÌNH KHỐI",
             width=18,
             borderwidth=8,
             font=("", 18),
@@ -93,7 +92,7 @@ def start_main_page():
         )
 
         sel_btn6 = Button(
-            text="Vegetable",
+            text="RAU CỦ",
             width=18,
             borderwidth=8,
             font=("", 18),
@@ -104,7 +103,7 @@ def start_main_page():
         )
 
         sel_btn7 = Button(
-            text="Vehicles",
+            text="XE CỘ",
             width=18,
             borderwidth=8,
             font=("", 18),
@@ -114,20 +113,20 @@ def start_main_page():
             command=lambda: start_game(7),
         )
         lab_img1.grid(row=0, column=0, padx=20)
-        sel_btn1.grid(row=0, column=4, pady=(10, 0), padx=50, )
-        sel_btn2.grid(row=1, column=4, pady=(10, 0), padx=50, )
-        sel_btn3.grid(row=2, column=4, pady=(10, 0), padx=50, )
-        sel_btn4.grid(row=3, column=4, pady=(10, 0), padx=50, )
-        sel_btn5.grid(row=4, column=4, pady=(10, 0), padx=50, )
-        sel_btn6.grid(row=5, column=4, pady=(10, 0), padx=50, )
-        sel_btn7.grid(row=6, column=4, pady=(10, 0), padx=50, )
+        sel_btn1.grid(row=0, column=4, pady=(10, 0), padx=0, )
+        sel_btn2.grid(row=1, column=4, pady=(10, 0), padx=0, )
+        sel_btn3.grid(row=2, column=4, pady=(10, 0), padx=0, )
+        sel_btn4.grid(row=3, column=4, pady=(10, 0), padx=0, )
+        sel_btn5.grid(row=4, column=4, pady=(10, 0), padx=0, )
+        sel_btn6.grid(row=5, column=4, pady=(10, 0), padx=0, )
+        sel_btn7.grid(row=6, column=4, pady=(10, 0), padx=0, )
 
     def show_option():
         start_btn.destroy()
-
         lab_img.destroy()
+        intro.destroy()
         option()
-
+    
     main_window = Tk()
 
     main_window.geometry("500x500+500+150")
@@ -141,8 +140,8 @@ def start_main_page():
     lab_img = Label(
         main_window,
         text="VUA TIẾNG VIỆT",
-        bg='#e6fff5',
-        font=("Courier", 28)
+        bg='#dfa801',
+        font=("Titillium 15 bold", 30)
     )
     lab_img.pack(pady=(50, 0))
 
@@ -152,13 +151,30 @@ def start_main_page():
         width=18,
         borderwidth=8,
         fg="#000000",
-        bg="#99ffd6",
+        bg="#dfa801",
         font=("", 13),
         cursor="hand2",
         command=show_option,
     )
-    start_btn.pack(pady=(50, 20))
+    start_btn.pack(pady=(150,20))
+    def show_intro():
+        messagebox.showinfo("HƯỚNG DẪN", "NGƯỜI CHƠI CÓ 15 GIÂY ĐỂ TRẢ LỜI \n \n MỖI CÂU TRẢ LỜI ĐÚNG ĐƯỢC 5 ĐIỂM \n \n MỖI LẦN DÙNG GỢI Ý BỊ TRỪ ĐI 1 ĐIỂM \n")
+        
+    intro=Button(
+        text="HƯỚNG DẪN",
+        width=18,
+        borderwidth=8,
+        fg="#000000",
+        bg="#dfa801",
+        font=("", 13),
+        command=show_intro,
+    )
+    intro.pack(pady=(0,0))
 
+    pygame.mixer.init()
+    pygame.mixer.music.load("1.mp3")
+    pygame.mixer.music.play(loops=100)
+    
     main_window.mainloop()
 
 
