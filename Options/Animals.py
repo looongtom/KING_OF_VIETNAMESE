@@ -5,7 +5,7 @@ import random
 import time
 import pygame
 
-ANIMALS_ANSWER = ["CON CHIM", "CON CHÓ", "CON CỪU"]
+ANIMALS_ANSWER = ["CON CHIM", "CON CHÓ", "CON CỪU","LẠC ĐÀ","CÁ NGỰA","BỒ CÂU","CHÓ SÓI","HẢI CẨU","SƯ TỬ","HÀ MÃ"]
 
 
 ran_num = randrange(0, (len(ANIMALS_ANSWER)))
