@@ -4,7 +4,7 @@ from tkinter import messagebox
 import random
 import time
 import pygame
-
+from PIL import ImageTk, Image
 ANIMALS_ANSWER = ["CHỮ NHẬT", "TAM GIÁC", "HÌNH THANG","HÌNH TRÒN","HÌNH QUẠT","HÌNH TRỤ","HỘP CHỮ NHẬT","KIM TỰ THÁP","HÌNH NÓN"]
 
 
@@ -111,21 +111,39 @@ def main():
             ans_lab.configure(text='Không đủ điểm')
 
     my_window = Tk()
-    my_window.geometry("600x600+500+150")
+    my_window.geometry("600x600+100+20")
     my_window.resizable(0, 0)
     my_window.title("Vua Tiếng Việt")
-    my_window.configure(background="#2a363b")
+    # my_window.configure(background="#2a363b")
+    photo2 = Image.open("anhnen1.png")
+    resize = photo2.resize((600,600), Image.ANTIALIAS)
+    photo3=ImageTk.PhotoImage(resize)
+    bg_label2 = Label(my_window, image = photo3)
+    bg_label2.place(x=0, y = 0, relwidth = 1, relheight = 1)
+   
+
     img1 = PhotoImage(file="back.png")
 
     lab_img1 = Button(
         my_window,
         image=img1,
-        bg='#2a363b',
+        bg='#154854',
         border=0,
         justify='center',
         command=back,
     )
-    lab_img1.pack(anchor='nw', pady=10, padx=10)
+    lab_img1.pack(anchor='nw', pady=45, padx=30)
+
+    img2 = Image.open("logo2.png")
+    resize = img2.resize((400,100), Image.ANTIALIAS)
+    img3=ImageTk.PhotoImage(resize)
+    lab_img2 = Button(
+        my_window,
+        image = img3,
+        bg='#154854',
+        borderwidth=0,
+    )    
+    lab_img2.pack()
     second=StringVar()
     second.set("10")
     time_title=StringVar()
@@ -133,54 +151,58 @@ def main():
     count_set=Label(
        # width=8, font=("Titillium",15),textvariable=time_title
         text="Thời gian",
-        bg="#dfa801",
-        fg="#2a363b",
-        font="Titillium  15 bold"
+        bg="#154854",
+        fg="#dfa801",
+        font="Titillium  14 bold"
     )
-    count_set.place(x=478,y=30.455)
+    count_set.place(x=490,y=40.455)
     count_down=Label(
-            width=2, font=("Titillium",30),textvariable=second
+            width=2, font=("Titillium",15),textvariable=second
     )
     #count_down.config(bg="2a363b")
-    count_down.place(x=500,y=61)
+    count_down.place(x=520,y=70)
 
     def run(temp):
+        global points
+        
         while temp >-1:
             mins,secs = divmod(temp,60)
             second.set("{0:2d}".format(secs))
             my_window.update()
             time.sleep(1)
             if (temp == 0):
-                messagebox.showinfo("ĐÃ HẾT GIỜ", "ĐÃ HẾT GIỜ \n HÃY THỬ LẠI VÀO LẦN SAU")
+                # messagebox.showinfo("ĐÃ HẾT GIỜ", "ĐÃ HẾT GIỜ \n BẠN GIÀNH ĐƯỢC ",strPoint," ĐIỂM" "\nHÃY THỬ LẠI VÀO LẦN SAU")
+                messagebox.showinfo("ĐÃ HẾT GIỜ","BẠN GIÀNH ĐƯỢC "+str(points)+" ĐIỂM\nHÃY THỬ LẠI VÀO LẦN SAU")
                 back()
             temp -= 1
     
 
-    score = Label(text="Điểm: 0", pady=16, bg="#2a363b", fg="#dfa801", font="Titillium  14 bold"
+    score = Label(text="Điểm: 0", pady=5, bg="#154854", fg="#dfa801", font="Titillium  14 bold"
     )
     score.pack(anchor="n")
 
-    word = Label(   text=jumbled_rand_word, pady=10, width=18, bg="#dfa801",  fg="#000000", font="Titillium  50 bold"  
+    word = Label(   text=jumbled_rand_word, pady=10, width=15,relief='raise', borderwidth=5, bg="#dfa801",  fg="#000000", font="Titillium  30 bold"  
     )
 
 
-    word.pack()
+    word.place(x= 117, y=270)
     #word.grid(pady=(10))
-    get_input = Entry(  font="none 26 bold", borderwidth=10,  justify='center',  
+    get_input = Entry(  font="none 18 bold", relief = 'raise',borderwidth=5,  justify='center',  
     )
-    get_input.pack()
+    get_input.place(x=165, y= 354)
 
-    submit = Button( text="Kiểm tra",  width=18,   borderwidth=8,  font=("", 18),  fg="#000000",  bg="#dfa801", command=cheak, 
+    submit = Button( text="Kiểm tra",  width=12,   borderwidth=5,  font=("", 14),  fg="#000000",  bg="#dfa801", command=cheak, 
     )
-    submit.pack(pady=(10, 20))
+    submit.place(x=228, y= 400)
 
-    change = Button( text="Đổi từ",width=18,borderwidth=8,fg="#000000", bg="#dfa801",font=("", 18),command=change, 
+    change = Button( text="Đổi từ",width=12,borderwidth=5,fg="#000000", bg="#dfa801",font=("", 14),command=change, 
     )
-    change.pack()
-    ans = Button(text="Gợi ý", width=18, borderwidth=8, fg="#000000",  bg="#dfa801", font=("", 18), command=show_answer, 
+    change.place(x=228, y= 460)
+    
+    ans = Button(text="Gợi ý", width=12, borderwidth=5, fg="#000000",  bg="#dfa801", font=("", 14), command=show_answer, 
     )
-    ans.pack(pady=(20, 10))
-    ans_lab = Label(  text="",  bg="#2a363b", fg="#dfa801",  font="Courier 17 bold", )
-    ans_lab.pack()
+    ans.place(x=228, y=520 )
+    ans_lab = Label(  text="",  bg="#154854", fg="#dfa801",  font="Courier 18 bold", )
+    ans_lab.place(x=224, y = 570)
     run(15)
     my_window.mainloop()
