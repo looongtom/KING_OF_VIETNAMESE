@@ -5,7 +5,7 @@ import random
 import time
 import pygame
 from PIL import ImageTk,Image
-ANIMALS_ANSWER = ["SU HÀO", "CÀ RỐT", "CẦN TÂY","CÀ TÍM","SU SU","HÀNH TÍM","HÀNH TÂY","CỦ TỎI"]
+ANIMALS_ANSWER = ["XE ĐIỆN", "XÍCH LÔ", "TÀU HOẢ","MÁY BAY","XE MÁY","Ô TÔ","XE ĐẠP","VÁN TRƯỢT","XE KÉO","XE THỒ","XE NGỰA"]
 
 
 ran_num = randrange(0, (len(ANIMALS_ANSWER)))
@@ -109,6 +109,7 @@ def main():
             #ans_lab.configure(text=str(n))
         else:
             ans_lab.configure(text='Không đủ điểm')
+
     my_window = Tk()
     my_window.geometry("600x600+100+20")
     my_window.resizable(0, 0)
